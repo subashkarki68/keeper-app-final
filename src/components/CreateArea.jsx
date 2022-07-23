@@ -49,7 +49,7 @@ function CreateArea(props) {
           placeholder="Take a note..."
           rows={inputHasFocus ? "3" : "1"}
         />
-        <Zoom in={inputHasFocus ? true : false} ><Fab onClick={submitNote}><AddIcon /></Fab></Zoom>
+        <Zoom in={inputHasFocus} ><Fab onClick={submitNote}><AddIcon /></Fab></Zoom>
 
       </form>
     </div >
