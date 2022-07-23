@@ -8,6 +8,7 @@ function CreateArea(props) {
     title: "",
     content: ""
   });
+  const [inputHasFocus, setFocus] = useState(false);
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -26,29 +27,32 @@ function CreateArea(props) {
       title: "",
       content: ""
     });
+    setFocus(false);
     event.preventDefault();
   }
+
 
   return (
     <div>
       <form className="create-note">
-        <input
+        {inputHasFocus && <input
           name="title"
           onChange={handleChange}
           value={note.title}
           placeholder="Title"
-        />
+        />}
         <textarea
+          onFocus={() => setFocus(true)}
           name="content"
           onChange={handleChange}
           value={note.content}
           placeholder="Take a note..."
-          rows="3"
+          rows={inputHasFocus ? "3" : "1"}
         />
-        <Zoom in={true}><Fab onClick={submitNote}><AddIcon /></Fab></Zoom>
+        <Zoom in={inputHasFocus ? true : false} ><Fab onClick={submitNote}><AddIcon /></Fab></Zoom>
 
       </form>
-    </div>
+    </div >
   );
 }
 
